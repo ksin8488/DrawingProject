@@ -73,21 +73,6 @@ public class DrawingPanel extends JPanel
 	
 	public void setupSliders()
 	{
-		
-	}
-	
-	public void setupPanel()
-	{
-		
-	}
-	
-	public void setupLayout()
-	{
-		
-	}
-	
-	public void setupListeners()
-	{
 		Hashtable<Integer, JLabel> scaleLabels = new Hashtable<Integer, JLabel>();
 		Hashtable<Integer, JLabel> edgeLabels = new Hashtable<Integer, JLabel>();
 		
@@ -111,5 +96,38 @@ public class DrawingPanel extends JPanel
 		edgeSlider.setMinorTickSpacing(1);
 		edgeSlider.setPaintTicks(true);
 		edgeSlider.setPaintLabels(true);
+	}
+	
+	public void setupPanel()
+	{
+		this.setLayout(appLayout);;
+		this.setBackground(Color.DARK_GRAY);
+		this.setPreferredSize(new Dimension(1024, 768)); //Used for display in WindowBuilder
+		
+		buttonPanel.setPreferredSize(new Dimension(200, 450));	//really important to have size when putting a panel inside a panel
+		buttonPanel.add(triangleButton);
+		buttonPanel.add(rectangleButton);
+		buttonPanel.add(ellipseButton);
+		buttonPanel.add(polygonButton);
+		buttonPanel.add(clearButton);
+		buttonPanel.add(saveButton);
+		buttonPanel.add(colorButton);
+		
+		sliderPanel.setPreferredSize(new Dimension(250, 450));
+		sliderPanel.add(scaleSlider);
+		sliderPanel.add(edgeSlider);
+		
+		this.add(buttonPanel);	//adding another panel for the button
+		this.add(sliderPanel);	//adding another panel for the slider
+		}
+	
+	public void setupLayout()
+	{
+		
+	}
+	
+	public void setupListeners()
+	{
+		
 	}
 }
