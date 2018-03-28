@@ -1,6 +1,29 @@
 package drawing.view;
 
-public class DrawingPanel
-{
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.GridLayout;
+import java.awt.Polygon;
+import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.geom.Ellipse2D;
+import java.util.Hashtable;
 
+import javax.swing.*;
+import javax.swing.event.ChangeEvent;	//still need to add this import even with javax.swing.* there
+import javax.swing.event.ChangeListener;
+
+import drawing.controller.DrawingController;
+
+public class DrawingPanel extends JPanel
+{
+	private final int MINIMUM_EDGE = 5;
+	private final int MAXIMUM_EDGE = 20;
+	private final int MINIMUM_SCALE = 20;
+	private final int MAXIMUM_SCALE = 100;
+	
+	private DrawingController app;
+	
+	
 }
