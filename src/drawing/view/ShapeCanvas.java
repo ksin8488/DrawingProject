@@ -3,7 +3,7 @@ package drawing.view;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Graphics;
+import java.awt.Graphics;	//this and Graphics2D is used to draw
 import java.awt.Graphics2D;
 import java.awt.Polygon;
 import java.awt.Rectangle;
@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
-import javax.swing.JFileChooser;
+import javax.swing.JFileChooser;		//lets us save inside the file
 import javax.swing.JPanel;
 
 import drawing.controller.DrawingController;
@@ -43,5 +43,42 @@ public class ShapeCanvas extends JPanel
 		this.setMinimumSize(new Dimension(600, 600));
 		this.setPreferredSize(new Dimension(600, 600));
 		this.setMaximumSize(getPreferredSize());
+	}
+	
+	public void addShape(Shape current)
+	{
+		
+	}
+	
+	public void clear()
+	{
+		
+	}
+	
+	public void changeBackground()
+	{
+		
+	}
+	
+	public void save()
+	{
+		
+	}
+	
+	private Color randomColor()
+	{
+		return Color.BLACK;	//Change later
+	}
+	
+	private void updateImage()
+	{
+		
+	}
+	
+	@Override
+	protected void paintComponent(Graphics graphics)	//need this in order to draw in a JFrame
+	{
+		super.paintComponent(graphics); //NEVER call paint component by yourself
+		graphics.drawImage(canvasImage,  0,  0,  null);	//null - no one is watching this picture
 	}
 }

@@ -65,7 +65,7 @@ public class DrawingPanel extends JPanel
 		saveButton = new JButton("save image");
 		colorButton = new JButton("change color");
 		
-		setupSliders();
+		setupSliders();	//sliders are more complex than buttons and need their own helper methods
 		setupPanel();
 		setupLayout();
 		setupListeners();
