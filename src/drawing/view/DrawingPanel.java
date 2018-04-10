@@ -55,8 +55,8 @@ public class DrawingPanel extends JPanel
 		
 		canvas = new ShapeCanvas(app);
 		sliderPanel = new JPanel();
-		buttonPanel = new JPanel(new GridLayout(0, 1));		//Turns the GUI into a grid that will be set with 0 rows and 1 column
-		
+		buttonPanel = new JPanel(new GridLayout(0, 1));		//Turns the GUI into a grid that will be set with 0 rows and 1 column. 
+															//The 0 works as an autofill but you can only have one
 		triangleButton = new JButton("add triangle");
 		rectangleButton = new JButton("add rectangle");
 		ellipseButton = new JButton("add ellipse");
@@ -78,6 +78,7 @@ public class DrawingPanel extends JPanel
 		
 		scaleLabels.put(MINIMUM_SCALE, new JLabel("<HTLM>Small<BR>Shape</HTML>"));
 		scaleLabels.put((MAXIMUM_SCALE + MINIMUM_SCALE) / 2, new JLabel("<HTML>Medium<BR>Shape</HTML>"));
+		scaleLabels.put(MAXIMUM_SCALE, new JLabel("<HTML>Large<BR>Shape</HTML>"));
 		
 		edgeLabels.put(MINIMUM_EDGE,  new JLabel("Edges: " + MINIMUM_EDGE));
 		edgeLabels.put(MAXIMUM_EDGE, new JLabel("Edges: " + MAXIMUM_EDGE));
@@ -88,6 +89,7 @@ public class DrawingPanel extends JPanel
 		scaleSlider.setMajorTickSpacing(10);
 		scaleSlider.setPaintTicks(true);
 		scaleSlider.setPaintLabels(true);
+		scaleSlider.setValue(MINIMUM_SCALE);		//tells the knob where to show up. Default is the middle without this.
 		
 		edgeSlider.setLabelTable(edgeLabels);
 		edgeSlider.setOrientation(JSlider.VERTICAL);
@@ -120,6 +122,39 @@ public class DrawingPanel extends JPanel
 		this.add(buttonPanel);	//adding another panel for the button
 		this.add(sliderPanel);	//adding another panel for the slider
 		}
+	
+	private boolean coinFlip()
+	{
+		return (int) (Math.random() * 2) == 0;
+	}
+	
+	private Polygon createPolygon(int sides)
+	{
+		Polygon currentShape = new Polygon();
+		int originX = (int) (Math.random() * 600);
+		int originY = (int) (Math.random() * 600);
+		
+		for(int index = 0; index <  sides; index++)
+		{
+			int minus = coinFlip() ? -1 : 1;
+			int shiftX = (int) (Math.random() * currentScale) * minus;
+			minus = coinFlip() ? -1 : 1;
+			int shiftY = (int) (Math.random() * currentScale) * minus;
+			currentShape.addPoint(originX + shiftX, originY + shiftY);
+		}
+		
+		return currentShape;
+	}
+	
+	private Rectangle createRectangle()
+	{
+		
+	}
+	
+	private Ellipse2D createEllipse()
+	{
+		
+	}
 	
 	public void setupLayout()
 	{
