@@ -193,6 +193,30 @@ public class DrawingPanel extends JPanel
 	
 	public void setupListeners()
 	{
+		edgeSlider.addChangeListener(new changeListener()
+		{
+			@Override
+			public void stateChanged(ChangeEvent e)
+			{
+				if(!edgeSlider.getValueIsAdjusting())
+				{
+					currentEdgeCount = edgeSlider.getValue();
+				}
+			}
+		});
+		
+		scaleSlider.addChangeListener(new ChangeListener()
+		{
+				@Override
+			public void stateChanged(changeEvent e)
+			{
+				if(!scaleSlider.getValueIsAdjusting())
+				{
+					currentScale = scaleSlider.getValue();
+				}
+			}
+		});
+		
 		rectangleButton.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent click)
