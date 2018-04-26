@@ -7,6 +7,9 @@ import java.awt.Polygon;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.awt.geom.Ellipse2D;
 import java.util.Hashtable;
 
@@ -192,31 +195,7 @@ public class DrawingPanel extends JPanel
 	}
 	
 	public void setupListeners()
-	{
-		edgeSlider.addChangeListener(new changeListener()
-		{
-			@Override
-			public void stateChanged(ChangeEvent e)
-			{
-				if(!edgeSlider.getValueIsAdjusting())
-				{
-					currentEdgeCount = edgeSlider.getValue();
-				}
-			}
-		});
-		
-		scaleSlider.addChangeListener(new ChangeListener()
-		{
-				@Override
-			public void stateChanged(changeEvent e)
-			{
-				if(!scaleSlider.getValueIsAdjusting())
-				{
-					currentScale = scaleSlider.getValue();
-				}
-			}
-		});
-		
+	{	
 		rectangleButton.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent click)
@@ -271,5 +250,64 @@ public class DrawingPanel extends JPanel
 			}
 		});
 		
+		edgeSlider.addChangeListener(new ChangeListener()
+		{
+			@Override
+			public void stateChanged(ChangeEvent e)
+			{
+				if(!edgeSlider.getValueIsAdjusting())
+				{
+					currentEdgeCount = edgeSlider.getValue();
+				}
+			}
+		});
+		
+		canvas.addMouseMotionListener(new MouseMotionListener()
+		{
+			public void mouseDragged(MouseEvent drag)
+			{
+				int x = drag.getX();
+				int y = drag.getY();
+				canvas.drawOnCanvas(x, y);
+				//Or you can do -> canvas.drawOnCanvas(drag.getX(), drag.getY());
+			}
+		
+			@Override
+			public void mouseMoved(MouseEvent move)
+			{
+				int x = move.getX();
+				int y = move.getY();
+			
+				System.out.println("The X is at " + x + " and the Y is at " + y);
+			}
+		});
+		
+		canvas.addMouseListener(new MouseListener()	//lots of sections we won't use but you could add things to. mainly for getting the drag to work
+		{
+			@Override
+			public void mouseClicked(MouseEvent e)
+			{}
+			
+			@Override
+			public void mousePressed(MouseEvent e)
+			{}
+			
+			@Override
+			public void mouseReleased(MouseEvent e)
+			{
+				canvas.resetPoint();
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e)
+			{}
+			
+			@Override
+			public void mouseExited(MouseEvent e)
+			{
+				canvas.resetPoint();
+			}
+		
+		});
 	}
 }
