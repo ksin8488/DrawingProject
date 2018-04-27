@@ -27,6 +27,6 @@ public class DrawingController
 	
 	public Component getFrame()
 	{
-		return 
+		return appFrame;
 	}
 }

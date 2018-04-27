@@ -59,6 +59,7 @@ public class DrawingPanel extends JPanel
 		canvas = new ShapeCanvas(app);
 		sliderPanel = new JPanel();
 		buttonPanel = new JPanel(new GridLayout(0, 1));		//Turns the GUI into a grid that will be set with 0 rows and 1 column. 
+		
 															//The 0 works as an autofill but you can only have one
 		triangleButton = new JButton("add triangle");
 		rectangleButton = new JButton("add rectangle");
@@ -108,6 +109,7 @@ public class DrawingPanel extends JPanel
 		this.setLayout(appLayout);;
 		this.setBackground(Color.DARK_GRAY);
 		this.setPreferredSize(new Dimension(1024, 768)); //Used for display in WindowBuilder
+		this.add(canvas);
 		
 		buttonPanel.setPreferredSize(new Dimension(200, 450));	//really important to have size when putting a panel inside a panel
 		buttonPanel.add(triangleButton);
@@ -191,7 +193,15 @@ public class DrawingPanel extends JPanel
 	
 	public void setupLayout()
 	{
-		
+		//Canvas Layout
+		appLayout.putConstraint(SpringLayout.NORTH, canvas, 24, SpringLayout.NORTH, this);
+		appLayout.putConstraint(SpringLayout.EAST, canvas, 650, SpringLayout.WEST, this);
+		//SliderPanel Layout
+		appLayout.putConstraint(SpringLayout.NORTH, sliderPanel, 0, SpringLayout.NORTH, canvas);
+		appLayout.putConstraint(SpringLayout.EAST, sliderPanel, -60, SpringLayout.EAST, this);
+		//ButtonPanel Layout
+		appLayout.putConstraint(SpringLayout.NORTH, buttonPanel, 0, SpringLayout.NORTH, canvas);
+		appLayout.putConstraint(SpringLayout.EAST, buttonPanel, 220, SpringLayout.EAST, canvas);
 	}
 	
 	public void setupListeners()
@@ -268,7 +278,7 @@ public class DrawingPanel extends JPanel
 			{
 				int x = drag.getX();
 				int y = drag.getY();
-				canvas.drawOnCanvas(x, y);
+				canvas.drawOnCanvas(x, y, edgeSlider.getValue());
 				//Or you can do -> canvas.drawOnCanvas(drag.getX(), drag.getY());
 			}
 		

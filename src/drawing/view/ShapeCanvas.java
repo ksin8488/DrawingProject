@@ -155,7 +155,7 @@ public class ShapeCanvas extends JPanel
 	{
 		Graphics2D current = canvasImage.createGraphics();
 		current.setPaint(Color.BLACK);	//can Change color
-		current.setStroke(new BasicStroke(3));
+		current.setStroke(new BasicStroke(lineWidth));
 		
 		if(previousX == Integer.MIN_VALUE)
 		{
